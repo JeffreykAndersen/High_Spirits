@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <title>Home Page</title>
+    <title>Create A Cocktail</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -15,14 +15,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/your_bar">Your Bar</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/create_cocktail">Create A Cocktail</a>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/create_cocktail">Create A Cocktail <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/log_out">Log Out</a>
@@ -31,20 +31,6 @@
             </div>
         </div>    
     </nav>
-    <h2>Hello, {{request.session.user}}</h2images>
-    <div class="container">
-        <div class="row">
-            <div class="col px-md-5"">
-                <h1>Your Bar</h1>
-                <a href="/your_bar">temp link</a>
-            </div>
-            <div class="col px-md-5"">
-                <h1>Add a Drink</h1>
-                <a href="/create_cocktail">temp link</a>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
 </body>
 </html>

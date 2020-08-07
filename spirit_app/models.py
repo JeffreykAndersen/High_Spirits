@@ -46,12 +46,23 @@ class LeadManager(models.Manager):
 class AlcoholManager(models.Manager):
     def validator(self,postData):
         errors={}
-        if len(postData['name'])<1:
-            errors['name'] = "Please provide the name of the alcohol."
-        if len(postData['type'])<1: 
-            errors['type'] = "Please select a category."
+        if len(postData['brand'])<1:
+            errors['brand'] = "Please provide the name of the alcohol."
+        if postData['alcohol_type'] =="null": 
+            errors['alcohol_type'] = "Please select a category."
         if len(postData['cost'])<1: 
             errors['cost'] = "Please enter the bottle price."
+        return errors
+    
+    def add_alcohol(self, postData):
+        per_oz = (float(postData['cost']) / 25.3605)
+        per_oz_round = round(per_oz, 2)
+        Alcohol.objects.create(
+            brand = postData['brand'],
+            alcohol_type = postData['alcohol_type'],
+            cost = postData['cost'],
+            ppo = per_oz_round
+        )
         
 class Lead(models.Model):
     first_name = models.CharField(max_length=255)
@@ -70,18 +81,27 @@ class Lead(models.Model):
 #     created_on = models.DateTimeField(auto_now_add=True)
 #     updated_on = models.DateTimeField(auto_now=True)
 
-# class Cocktails(models.Model):
-#     name = models.CharField(max_length=255)
-#     desc = models.TextField()
-#     created_on = models.DateTimeField(auto_now_add=True)
-#     updated_on = models.DateTimeField(auto_now=True)
+class Cocktail(models.Model):
+    name = models.CharField(max_length=255)
+    desc = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
 
 
 class Alcohol(models.Model):
     brand = models.CharField(max_length=255)
     alcohol_type = models.CharField(max_length=255)
-    cost = models.IntegerField()
-    ppo = models.IntegerField()
+    cost = models.FloatField()
+    ppo = models.FloatField()
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+    objects = AlcoholManager()
+
+class Drink_Ingredient(models.Model):
+    liquor = models.OneToOneField(Alcohol, related_name='ingredient', on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    cocktail = models.ForeignKey(Cocktail, related_name="ingredients", on_delete=models.CASCADE)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
 
