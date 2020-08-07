@@ -66,12 +66,88 @@ def add_alcohol(request):
             Alcohol.objects.add_alcohol(request.POST)
             return redirect('/your_bar')
 
+def edit_alcohol(request,id):
+    if 'user' not in request.session:
+        return redirect('/')
+    context={
+        "this_alcohol" : Alcohol.objects.get(id=id)
+    }
+    return render(request, 'edit_alcohol.html', context)
+
+def alcohol_edit_confirm(request, id):
+    if request.method=="POST":
+        errors = Alcohol.objects.validator(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+                print (key, value)
+            return redirect(f'/edit_alcohol/{id}')
+        else:
+            this_bottle = Alcohol.objects.get(id=id)
+            per_oz = (float(request.POST['cost']) / 25.3605)
+            per_oz_round = round(per_oz, 2)
+            this_bottle.brand = request.POST['brand']
+            this_bottle.alcohol_type = request.POST['alcohol_type']
+            this_bottle.cost = request.POST['cost']
+            this_bottle.ppo = per_oz_round
+            this_bottle.save()
+        return redirect ('/your_bar')
+
 def delete_alcohol(request, id):
     removed = Alcohol.objects.get(id=id)
     removed.delete()
     return redirect('/your_bar')
 
+# CREATE COCKTAIL FUNTIONALITY
+def codex(request):
+    if 'user' not in request.session:
+        return redirect('/') 
+    context={
+        "cocktails" : Cocktail.objects.all()
+    }
+    return render(request, 'codex.html', context)
+
 def create_cocktail(request):
     if 'user' not in request.session:
         return redirect('/') 
-    return render(request, "create_cocktail.html")
+    return render(request, 'create_cocktail.html')
+
+def cocktail_add(request):
+    if request.method =='POST':
+        errors = Cocktail.objects.validator(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+                print (key, value)
+            return redirect('/create_cocktail')
+        else:
+            Cocktail.objects.add_cocktail(request.POST)
+            return redirect('/codex')
+
+def edit_cocktail(request,id):
+    if 'user' not in request.session:
+        return redirect('/')
+    context={
+        "this_cocktail" : Cocktail.objects.get(id=id)
+    }
+    return render(request, 'edit_cocktail.html', context)
+
+def cocktail_edit_confirm(request, id):
+    if request.method=="POST":
+        errors = Cocktail.objects.validator(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+                print (key, value)
+            return redirect(f'/edit_cocktail/{id}')
+        else:
+            this_cocktail = Cocktail.objects.get(id=id)
+            this_cocktail.name = request.POST['name']
+            this_cocktail.desc = request.POST['desc']
+            this_cocktail.save()
+        return redirect ('/codex')
+
+def delete_cocktail(request, id):
+    removed = Cocktail.objects.get(id=id)
+    removed.delete()
+    return redirect('/codex')

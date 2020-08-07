@@ -63,6 +63,22 @@ class AlcoholManager(models.Manager):
             cost = postData['cost'],
             ppo = per_oz_round
         )
+
+class CocktailManager(models.Manager):
+    def validator(self,postData):
+        errors={}
+        if len(postData['name']) < 1:
+            errors['name'] = "Every drink needs a name"
+        if len(postData['desc']) < 15: 
+            errors['desc'] = "Please be a little more descriptive"
+        # figure outr how to store a fe ingredients and validate
+        return errors
+    
+    def add_cocktail(self, postData):
+        Cocktail.objects.create(
+            name = postData['name'],
+            desc = postData['desc'],
+        )
         
 class Lead(models.Model):
     first_name = models.CharField(max_length=255)
@@ -86,6 +102,7 @@ class Cocktail(models.Model):
     desc = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+    objects = CocktailManager()
 
 
 class Alcohol(models.Model):

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <title>Create A Cocktail</title>
+    <title>Cocktail Codex</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -21,11 +21,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/your_bar">Your Bar</a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/create_cocktail">Create A Cocktail <span class="sr-only">(current)</span></a>
-                    </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/codex">Codex</a>
+                        <a class="nav-link" href="/create_cocktail">Create A Cocktail</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/codex">Codex <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/log_out">Log Out</a>
@@ -34,25 +34,23 @@
             </div>
         </div>    
     </nav>
-        <div class="mx-auto" style="width: 450px;">
-        <h2>Add a Cocktail</h2>
-        <form action="/cocktail_add" method="POST">
-            {% csrf_token %}
-            <label for="name">Drink Name:</label>
-            <input type="text" name="name" id="name" class="form-control" value="{{this_cocktail.name}}">
-            <label for="desc">Tell us how to make it</label>
-            <textarea name="desc" id="" cols="30" rows="10" class="form-control"></textarea>
-            <input type="submit" value="Add">
-        </form>
-        <div class="mx-auto" style="width: 400px;">
-            {% if messages %}
-                <ul id="messages">
-                    {% for message in messages %}
-                    <li>{{message}}</li>
-                    {% endfor%}
-                </ul>
-            {% endif %}
-        </div>
-    </div>
+    <table class="table table-striped mx-auto" style="width: 1300px;">
+        <thead class="thead-dark">
+            <tr>
+                <th>Cocktail name</th>
+                <th>Ingredients</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cocktail in cocktails %}
+            <tr>
+                <th scope="row">{{cocktail.name}}</th>
+                <td>{{cocktail.ingredients}}</td>
+                <td><a href="/remove_cocktail/{{cocktail.id}}">Remove </a>|<a href="/edit_cocktail/{{cocktail.id}}"> Edit</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

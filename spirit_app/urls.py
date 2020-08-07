@@ -10,7 +10,14 @@ urlpatterns = [
     # YOUR BAR 
     path('add_alcohol', views.add_alcohol),
     path('remove_alcohol/<int:id>', views.delete_alcohol),
+    path('edit_alcohol/<int:id>', views.edit_alcohol),
+    path('alcohol_edit_confirm/<int:id>', views.alcohol_edit_confirm),
     path('your_bar', views.your_bar),
-    # COCKTAIL CREATION
+    # COCKTAIL CREATION MANAGMENT
+    path('codex', views.codex),
     path('create_cocktail', views.create_cocktail),
+    path('cocktail_add', views.cocktail_add),
+    path('remove_cocktail/<int:id>', views.delete_cocktail),
+    path('edit_cocktail/<int:id>', views.edit_cocktail),
+    path('cocktail_edit_confirm/<int:id>', views.cocktail_edit_confirm),
 ]

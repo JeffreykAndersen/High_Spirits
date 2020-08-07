@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <title>Create A Cocktail</title>
+    <title>Edit {{this_cocktail.name}}</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -36,12 +36,12 @@
     </nav>
         <div class="mx-auto" style="width: 450px;">
         <h2>Add a Cocktail</h2>
-        <form action="/cocktail_add" method="POST">
+        <form action="/cocktail_edit_confirm/{{this_cocktail.id}}" method="POST">
             {% csrf_token %}
             <label for="name">Drink Name:</label>
             <input type="text" name="name" id="name" class="form-control" value="{{this_cocktail.name}}">
             <label for="desc">Tell us how to make it</label>
-            <textarea name="desc" id="" cols="30" rows="10" class="form-control"></textarea>
+            <textarea name="desc" id="" cols="30" rows="10" class="form-control">{{this_cocktail.desc}}</textarea>
             <input type="submit" value="Add">
         </form>
         <div class="mx-auto" style="width: 400px;">

@@ -25,34 +25,15 @@
                         <a class="nav-link" href="/create_cocktail">Create A Cocktail</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/codex">Codex</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/log_out">Log Out</a>
                     </li>
                 </ul>
             </div>
         </div>    
     </nav>
-    <table class="table table-striped">
-        <thead class="thead-dark">
-            <tr>
-                <th>Brand</th>
-                <th>Type</th>
-                <th>Price</th>
-                <th>Cost per Oz.</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for bottle in bottles %}
-            <tr>
-                <th scope="row">{{bottle.brand}}</th>
-                <td>{{bottle.alcohol_type}}</td>
-                <td>{{bottle.cost}}</td>
-                <td>{{bottle.ppo}}</td>
-                <td><a href="/remove_alcohol/{{bottle.id}}">Remove</a></td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
     <div class="mx-auto" style="width: 450px;">
         <h2>Add to your stock</h2>
         <form action="/add_alcohol" method="POST">
@@ -62,9 +43,11 @@
             <label for="alcohol_type">Type:</label>
             <select name="alcohol_type" id="alcohol_type" class="form-control">
                 <option value="null">Select a type..</option>
+                <option value="Amaro">Amaro</option>
                 <option value="Aperitif">Aperitif</option>
                 <option value="Bourbon">Bourbon</option>
                 <option value="Brandy">Brandy</option>
+                <option value="Fortified Wine">Fortified Wine</option>
                 <option value="Gin">Gin</option>
                 <option value="Mezcal">Mezcal</option>
                 <option value="Rum">Rum</option>
@@ -88,5 +71,27 @@
             {% endif %}
         </div>
     </div>
+    <table class="table table-striped mx-auto" style="width: 1300px;">
+        <thead class="thead-dark">
+            <tr>
+                <th>Brand</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Cost per Oz.</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bottle in bottles %}
+            <tr>
+                <th scope="row">{{bottle.brand}}</th>
+                <td>{{bottle.alcohol_type}}</td>
+                <td>{{bottle.cost}}</td>
+                <td>{{bottle.ppo}}</td>
+                <td><a href="/remove_alcohol/{{bottle.id}}">Remove </a>|<a href="/edit_alcohol/{{bottle.id}}"> Edit</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

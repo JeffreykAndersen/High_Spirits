@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <title>Create A Cocktail</title>
+    <title>Edit {{this_alcohol.brand}}</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -18,11 +18,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/home">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/your_bar">Your Bar</a>
-                    </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/create_cocktail">Create A Cocktail <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/your_bar">Your Bar <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/create_cocktail">Create A Cocktail</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/codex">Codex</a>
@@ -34,14 +34,31 @@
             </div>
         </div>    
     </nav>
-        <div class="mx-auto" style="width: 450px;">
-        <h2>Add a Cocktail</h2>
-        <form action="/cocktail_add" method="POST">
+    <div class="mx-auto" style="width: 450px;">
+        <h2>Edit {{this_alcohol.brand}}</h2>
+        <form action="/alcohol_edit_confirm/{{this_alcohol.id}}" method="POST">
             {% csrf_token %}
-            <label for="name">Drink Name:</label>
-            <input type="text" name="name" id="name" class="form-control" value="{{this_cocktail.name}}">
-            <label for="desc">Tell us how to make it</label>
-            <textarea name="desc" id="" cols="30" rows="10" class="form-control"></textarea>
+            <label for="brand">Alcohol Brand:</label>
+            <input type="text" name="brand" id="brand" class="form-control" value="{{this_alcohol.brand}}">
+            <label for="alcohol_type">Type:</label>
+            <select name="alcohol_type" id="alcohol_type" class="form-control">
+                <option value="{{this_alcohol.brand}}">{{this_alcohol.alcohol_type}}</option>
+                <option value="Amaro">Amaro</option>
+                <option value="Aperitif">Aperitif</option>
+                <option value="Bourbon">Bourbon</option>
+                <option value="Brandy">Brandy</option>
+                <option value="Fortified Wine">Fortified Wine</option>
+                <option value="Gin">Gin</option>
+                <option value="Mezcal">Mezcal</option>
+                <option value="Rum">Rum</option>
+                <option value="Scotch">Scotch</option>
+                <option value="Tequila">Tequila</option>
+                <option value="Vodka">Vodka</option>
+                <option value="Whiskey">Whiskey</option>
+                <option value="Other">Other</option>
+            </select>
+            <label for="cost">Shelf Price:</label>
+            <input type="number" id="cost" name="cost" step="0.01" class="form-control" value="{{this_alcohol.cost}}">
             <input type="submit" value="Add">
         </form>
         <div class="mx-auto" style="width: 400px;">
