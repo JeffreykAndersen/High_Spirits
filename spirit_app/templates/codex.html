@@ -46,8 +46,10 @@
         {% for cocktail in cocktails %}
             <tr>
                 <th scope="row">{{cocktail.name}}</th>
-                <td>{{cocktail.ingredients}}</td>
-                <td><a href="/remove_cocktail/{{cocktail.id}}">Remove </a>|<a href="/edit_cocktail/{{cocktail.id}}"> Edit</a></td>
+                {% for ingredient in cocktail.ingredients.all %}
+                    <td>{{ingredient.liquor.brand}} - {{ingredient.quantity}} oz.</td>
+                {% endfor %}
+                <td><a href="/view_cocktail/{{cocktail.id}}">View </a>|<a href="/edit_cocktail/{{cocktail.id}}"> Edit </a>|<a href="/remove_cocktail/{{cocktail.id}}"> Remove</a></td>
             </tr>
         {% endfor %}
         </tbody>

@@ -116,7 +116,7 @@ class Alcohol(models.Model):
 
 class Drink_Ingredient(models.Model):
     liquor = models.OneToOneField(Alcohol, related_name='ingredient', on_delete=models.CASCADE)
-    quantity = models.IntegerField()
+    quantity = models.FloatField()
     cocktail = models.ForeignKey(Cocktail, related_name="ingredients", on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)

@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/jquery.range.css' %}">
+    <script src="{% static 'js/jquery.range.js' %}"></script>
     <title>Create A Cocktail</title>
 </head>
 <body>
@@ -42,6 +46,17 @@
             <input type="text" name="name" id="name" class="form-control" value="{{this_cocktail.name}}">
             <label for="desc">Tell us how to make it</label>
             <textarea name="desc" id="" cols="30" rows="10" class="form-control"></textarea>
+            <label for="liquor">Liquor:</label>
+            <select name="liquor" id="liquor" class="form-control">
+                <option value="null">Select alcohol..</option>
+                {% for alcohol in alcohols %}
+                <option value="{{alcohol.id}}">{{alcohol.brand}}</option>
+                {% endfor %}
+            </select>
+            <label for="quantity">Quantity:</label>
+            <br>
+            <input class="single-slider" type="hidden" value="0.25" name="quantity" id="quantity"/>
+            <br>
             <input type="submit" value="Add">
         </form>
         <div class="mx-auto" style="width: 400px;">
@@ -54,5 +69,19 @@
             {% endif %}
         </div>
     </div>
+    <script>
+        $(document).ready(function(){
+            $('.single-slider').jRange({
+                from: 0.25,
+                to: 6.0,
+                step: 0.25,
+                scale: [0.25,1.0,2.0,3.0,4.0,5.0,6.0],
+                format: '%s',
+                width: 300,
+                showLabels: true,
+                snap: true
+            });
+        });
+    </script>
 </body>
 </html>

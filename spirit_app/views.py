@@ -110,7 +110,10 @@ def codex(request):
 def create_cocktail(request):
     if 'user' not in request.session:
         return redirect('/') 
-    return render(request, 'create_cocktail.html')
+    context={
+        "alcohols" :Alcohol.objects.all()
+    }
+    return render(request, 'create_cocktail.html', context)
 
 def cocktail_add(request):
     if request.method =='POST':
@@ -121,14 +124,21 @@ def cocktail_add(request):
                 print (key, value)
             return redirect('/create_cocktail')
         else:
+            print(request.POST['quantity'])
             Cocktail.objects.add_cocktail(request.POST)
+            Drink_Ingredient.objects.create(
+                cocktail = Cocktail.objects.last(),
+                liquor = Alcohol.objects.get(id=request.POST['liquor']),
+                quantity = request.POST['quantity']
+            )
             return redirect('/codex')
 
 def edit_cocktail(request,id):
     if 'user' not in request.session:
         return redirect('/')
     context={
-        "this_cocktail" : Cocktail.objects.get(id=id)
+        "this_cocktail" : Cocktail.objects.get(id=id),
+        "alcohols" :Alcohol.objects.all() 
     }
     return render(request, 'edit_cocktail.html', context)
 
