@@ -106,12 +106,18 @@ def codex(request):
         "cocktails" : Cocktail.objects.all()
     }
     return render(request, 'codex.html', context)
+    
 def view_cocktail(request, id):
     if 'user' not in request.session:
         return redirect('/')
-    context = {
-        "cocktail" : Cocktail.objects.get(id=id),
-    }
+    this_cocktail = Cocktail.objects.get(id=id)
+    total_cost = 0
+    for ingredient in this_cocktail.ingredients.all():
+        total_cost += round(ingredient.quantity * ingredient.liquor.ppo, 2)
+        context = {
+            "cocktail" : Cocktail.objects.get(id=id),
+            "cost": total_cost
+        }
     return render(request, 'view_cocktail.html', context)
 
 

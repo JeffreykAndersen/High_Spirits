@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'css/img_style.css'%}">
     <title>Home Page</title>
 </head>
 <body>
@@ -39,11 +41,18 @@
         <div class="row">
             <div class="col px-md-5"">
                 <h1>Your Bar</h1>
-                <a href="/your_bar">temp link</a>
+                {% load static%}
+                <a href="/your_bar"><img class="home_img" src="{% static 'images/your_bar.jpg' %}" alt="Your Bar" ></a>
             </div>
             <div class="col px-md-5"">
                 <h1>Add a Drink</h1>
-                <a href="/create_cocktail">temp link</a>
+                <a href="/create_cocktail"><img class="home_img" src="{% static 'images/add_drink.jpg' %}" alt="Create Cocktail"></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="mx-auto" style="width: 400px;">
+                <h1>Codex</h1>
+                <a href="/codex"><img class="home_img" src="{% static 'images/codex.jpg' %}" alt="Create Cocktail"></a>
             </div>
         </div>
     </div>
