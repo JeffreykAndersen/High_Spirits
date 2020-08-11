@@ -46,17 +46,92 @@
             <input type="text" name="name" id="name" class="form-control" value="{{this_cocktail.name}}">
             <label for="desc">Tell us how to make it</label>
             <textarea name="desc" id="" cols="30" rows="10" class="form-control"></textarea>
-            <label for="liquor">Liquor:</label>
-            <select name="liquor" id="liquor" class="form-control">
+            <!-- these are my ingredient fields to be controlled by Javascript tags -->
+            
+            <!-- <label for="">Number of Ingredients:</label>
+            <input type="text" id="total" name="total" placeholder="0" class="form-control">
+            <a href="#"  onclick="addIngredients()">Add Ingredients</a>
+            <div id="container"></div> -->
+            
+<!-- ingredient 1 -->
+            <label for="liquor0">Liquor:</label>
+            <select name="liquor0" id="liquor0" class="form-control">
                 <option value="null">Select alcohol..</option>
                 {% for alcohol in alcohols %}
                 <option value="{{alcohol.id}}">{{alcohol.brand}}</option>
                 {% endfor %}
             </select>
-            <label for="quantity">Quantity:</label>
+            <label for="quantity0">Quantity:</label>
             <br>
-            <input class="single-slider" type="hidden" value="0.25" name="quantity" id="quantity"/>
             <br>
+            <input class="single-slider" type="hidden" value="0" name="quantity0" id="quantity0"/>
+            <br>
+<!-- ingredient 2 -->
+            <label for="liquor1">Liquor:</label>
+            <select name="liquor1" id="liquor1" class="form-control">
+                <option value="null">Select alcohol..</option>
+                {% for alcohol in alcohols %}
+                <option value="{{alcohol.id}}">{{alcohol.brand}}</option>
+                {% endfor %}
+            </select>
+            <label for="quantity1">Quantity:</label>
+            <br>
+            <br>
+            <input class="single-slider" type="hidden" value="0" name="quantity1" id="quantity1"/>
+            <br>
+<!-- ingredient 3 -->
+            <label for="liquor2">Liquor:</label>
+            <select name="liquor2" id="liquor2" class="form-control">
+                <option value="null">Select alcohol..</option>
+                {% for alcohol in alcohols %}
+                <option value="{{alcohol.id}}">{{alcohol.brand}}</option>
+                {% endfor %}
+            </select>
+            <label for="quantity2">Quantity:</label>
+            <br>
+            <br>
+            <input class="single-slider" type="hidden" value="0" name="quantity2" id="quantity2"/>
+            <br>
+<!-- ingredient 4 -->
+            <label for="liquor3">Liquor:</label>
+            <select name="liquor3" id="liquor3" class="form-control">
+                <option value="null">Select alcohol..</option>
+                {% for alcohol in alcohols %}
+                <option value="{{alcohol.id}}">{{alcohol.brand}}</option>
+                {% endfor %}
+            </select>
+            <label for="quantity3">Quantity:</label>
+            <br>
+            <br>
+            <input class="single-slider" type="hidden" value="0" name="quantity3" id="quantity3"/>
+            <br>
+ <!-- ingredient 5 --> 
+            <label for="liquor4">Liquor:</label>
+            <select name="liquor4" id="liquor4" class="form-control">
+                <option value="null">Select alcohol..</option>
+                {% for alcohol in alcohols %}
+                <option value="{{alcohol.id}}">{{alcohol.brand}}</option>
+                {% endfor %}
+            </select>
+            <label for="quantity4">Quantity:</label>
+            <br>
+            <br>
+            <input class="single-slider" type="hidden" value="0" name="quantity4" id="quantity4"/>
+            <br>
+ <!-- ingredient 6 -->
+            <label for="liquor5">Liquor:</label>
+            <select name="liquor5" id="liquor5" class="form-control">
+                <option value="null">Select alcohol..</option>
+                {% for alcohol in alcohols %}
+                <option value="{{alcohol.id}}">{{alcohol.brand}}</option>
+                {% endfor %}
+            </select>
+            <label for="quantity5">Quantity:</label>
+            <br>
+            <br>
+            <input class="single-slider" type="hidden" value="0" name="quantity5" id="quantity5"/>
+            <br>
+
             <input type="submit" value="Add">
         </form>
         <div class="mx-auto" style="width: 400px;">
@@ -72,16 +147,45 @@
     <script>
         $(document).ready(function(){
             $('.single-slider').jRange({
-                from: 0.25,
+                from: 0,
                 to: 6.0,
                 step: 0.25,
-                scale: [0.25,1.0,2.0,3.0,4.0,5.0,6.0],
+                scale: [0,1.0,2.0,3.0,4.0,5.0,6.0],
                 format: '%s',
                 width: 300,
                 showLabels: true,
                 snap: true
             });
         });
+        // function addIngredients(){
+        //     console.log("working");
+        //     // how many
+        //     var number = document.getElementById("total").value;
+        //     var liquors = [];
+        //     for (var i = 0; i< {{ alcohols }}; i++){
+        //         console.log("jinja baby!!")
+        //     };
+        //     if (number <= 7){
+        //     // target location
+        //     // var container = document.getElementById("container");
+        //     // // removes content in case of hange
+        //     // while (container.hasChildNodes()){
+        //     //     container.removeChild(container.lastChild);
+        //     // }
+        //         for (var i=0; i < number; i ++){
+        //             console.log("Looping Correctly " + (i+1) + " times.");
+        //             var ingredientInput = document.createElement("select");
+        //             ingredientInput.type = "select";
+
+
+        //             var ingredientQuantity = document.createElement("input");
+
+        //         }
+        //     }
+        //     else{
+        //         console.log("Too many ingredients. Must be less than 8.")
+        //     }
+        // }
     </script>
 </body>
 </html>

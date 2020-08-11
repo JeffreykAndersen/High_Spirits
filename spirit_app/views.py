@@ -19,7 +19,7 @@ def register_user(request):
             logged_user = Lead.objects.last()
             request.session['id'] = logged_user.id
             request.session['user'] = logged_user.first_name
-            return redirect('/logged_in')
+            return redirect('/home')
 
 def log_in(request):
     result = Lead.objects.authenticate(request.POST['user_email'], request.POST['user_password'])
@@ -106,6 +106,14 @@ def codex(request):
         "cocktails" : Cocktail.objects.all()
     }
     return render(request, 'codex.html', context)
+def view_cocktail(request, id):
+    if 'user' not in request.session:
+        return redirect('/')
+    context = {
+        "cocktail" : Cocktail.objects.get(id=id),
+    }
+    return render(request, 'view_cocktail.html', context)
+
 
 def create_cocktail(request):
     if 'user' not in request.session:
@@ -124,13 +132,18 @@ def cocktail_add(request):
                 print (key, value)
             return redirect('/create_cocktail')
         else:
-            print(request.POST['quantity'])
             Cocktail.objects.add_cocktail(request.POST)
-            Drink_Ingredient.objects.create(
-                cocktail = Cocktail.objects.last(),
-                liquor = Alcohol.objects.get(id=request.POST['liquor']),
-                quantity = request.POST['quantity']
-            )
+            for i in range(6):
+                if request.POST['liquor'+str(i)] != "null":
+                    Drink_Ingredient.objects.create(
+                        cocktail = Cocktail.objects.last(),
+                        liquor = Alcohol.objects.get(id=request.POST['liquor'+str(i)]),
+                        quantity = request.POST['quantity'+str(i)]
+                    )
+            # delete_ingredients = Drink_Ingredient.objects.filter(quantity=0)
+            # if len(delete_ingredients)> 0:
+            #     for x in delete_ingredients:
+            #         x.delete()
             return redirect('/codex')
 
 def edit_cocktail(request,id):

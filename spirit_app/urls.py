@@ -20,4 +20,5 @@ urlpatterns = [
     path('remove_cocktail/<int:id>', views.delete_cocktail),
     path('edit_cocktail/<int:id>', views.edit_cocktail),
     path('cocktail_edit_confirm/<int:id>', views.cocktail_edit_confirm),
+    path('view_cocktail/<int:id>', views.view_cocktail),
 ]

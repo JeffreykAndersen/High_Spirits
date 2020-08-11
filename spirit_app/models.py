@@ -55,12 +55,15 @@ class AlcoholManager(models.Manager):
         return errors
     
     def add_alcohol(self, postData):
-        per_oz = (float(postData['cost']) / 25.3605)
+        the_cost = float(postData['cost'])
+        watax_cost = round((the_cost * .205)+2.83+ the_cost)
+
+        per_oz = (watax_cost / 25.3605)
         per_oz_round = round(per_oz, 2)
         Alcohol.objects.create(
             brand = postData['brand'],
             alcohol_type = postData['alcohol_type'],
-            cost = postData['cost'],
+            cost = watax_cost,
             ppo = per_oz_round
         )
 
@@ -115,8 +118,8 @@ class Alcohol(models.Model):
     objects = AlcoholManager()
 
 class Drink_Ingredient(models.Model):
-    liquor = models.OneToOneField(Alcohol, related_name='ingredient', on_delete=models.CASCADE)
-    quantity = models.FloatField()
+    liquor = models.ForeignKey(Alcohol, related_name='ingredient', on_delete=models.CASCADE, null = True, blank = True)
+    quantity = models.FloatField(null = True, blank = True)
     cocktail = models.ForeignKey(Cocktail, related_name="ingredients", on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
