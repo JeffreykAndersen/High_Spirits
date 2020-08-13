@@ -7,12 +7,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/jquery.range.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
     <script src="{% static 'js/jquery.range.js' %}"></script>
     <title>Create A Cocktail</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light" id="navigation">
+        <div id="navigation" class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="/home">HS here</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -38,7 +39,7 @@
             </div>
         </div>    
     </nav>
-        <div class="mx-auto" style="width: 450px;">
+    <div class="mx-auto pad_these" style="width: 450px;">
         <h2>Add a Cocktail</h2>
         <form action="/cocktail_add" method="POST">
             {% csrf_token %}
@@ -105,7 +106,7 @@
             <br>
             <input class="single-slider" type="hidden" value="0" name="quantity3" id="quantity3"/>
             <br>
- <!-- ingredient 5 --> 
+<!-- ingredient 5 --> 
             <label for="liquor4">Liquor:</label>
             <select name="liquor4" id="liquor4" class="form-control">
                 <option value="null">Select alcohol..</option>
@@ -118,7 +119,7 @@
             <br>
             <input class="single-slider" type="hidden" value="0" name="quantity4" id="quantity4"/>
             <br>
- <!-- ingredient 6 -->
+<!-- ingredient 6 -->
             <label for="liquor5">Liquor:</label>
             <select name="liquor5" id="liquor5" class="form-control">
                 <option value="null">Select alcohol..</option>

@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
     <title>{{cocktail.name}}</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light" id="navigation">
+        <div id="navigation" class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="/home">HS here</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -34,7 +36,7 @@
             </div>
         </div>    
     </nav>
-    <div class="mx-auto" style="width: 450px;">
+    <div class="mx-auto pad_these" style="width: 450px;">
         <h2>{{cocktail.name}}</h2>
         <p>{{cocktail.desc}}</p>
         <h4>Ingredients</h4>
@@ -42,7 +44,7 @@
             <p>{{ingredient.liquor.brand}} - {{ingredient.quantity}} oz.</p>
         {% endfor %}
         <h4>Total cost</h4>
-        {{cost}}
+        <p>$ {{cost}}</p>
     </div>
 </body>
 </html>

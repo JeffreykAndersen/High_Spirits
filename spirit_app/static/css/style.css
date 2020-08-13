@@ -1,0 +1,22 @@
+.home_img{
+    max-width: 400px;
+    
+}
+#navigation{
+    background-color: #ffcf40;
+}
+
+.pad_these{
+    margin: 25px ;
+    padding:10px;
+    background-color: #ffcf40;
+    border-radius: 10px;
+}
+
+.margin_these{
+    margin: 15px;
+    padding:10px;
+
+}
+
+

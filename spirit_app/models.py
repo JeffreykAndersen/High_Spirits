@@ -56,7 +56,9 @@ class AlcoholManager(models.Manager):
     
     def add_alcohol(self, postData):
         the_cost = float(postData['cost'])
-        if postData['alcohol_type'] !=  "Fruit Juice":
+        if postData['alcohol_type'] == "Fruit Juice" or "Simple Syrup":
+            pass
+        else: 
             the_cost = round((the_cost * .205)+2.83+ the_cost, 2)
         per_oz = (the_cost / 25.3605)
         per_oz_round = round(per_oz, 2)
@@ -104,7 +106,6 @@ class Cocktail(models.Model):
     name = models.CharField(max_length=255)
     desc = models.TextField()
     # ADD THIS LATER
-    # total_cost = models.IntegerField()
     # photo = models.FileField(upload_to= "media", null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
     <title>Welcome to High Spirits</title>
 </head>
 <body>
@@ -12,7 +14,7 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col" id="register">
+            <div class="col pad_these" id="register">
                 <form action="/register_user" method="POST">
                     {% csrf_token %}
                     <label for="first_name">First Name:</label>
@@ -28,7 +30,7 @@
                     <input type="submit" value="Register">
                 </form>
             </div>
-            <div class="col" id="log-in">
+            <div class="col pad_these" id="log-in">
                 <form action="/log_in" method="POST">
                     {% csrf_token %}
                     <label for="user_email">Email:</label>
@@ -39,15 +41,15 @@
                 </form>
             </div>
         </div>
-        <div class="mx-auto" style="width: 400px;">
         {% if messages %}
+        <div class="mx-auto pad_these" style="width: 400px;"> 
             <ul id="messages">
                 {% for message in messages %}
                 <li>{{message}}</li>
                 {% endfor%}
             </ul>
-        {% endif %}
         </div>
+        {% endif %}
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>

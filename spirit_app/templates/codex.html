@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
     <title>Cocktail Codex</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light" id="navigation">
+        <div id="navigation" class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="/home">HS here</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -34,25 +36,27 @@
             </div>
         </div>    
     </nav>
-    <table class="table table-striped mx-auto" style="width: 1300px;">
-        <thead class="thead-dark">
-            <tr>
-                <th>Cocktail name</th>
-                <th>Ingredients</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for cocktail in cocktails %}
-            <tr>
-                <th scope="row">{{cocktail.name}}</th>
-                {% for ingredient in cocktail.ingredients.all %}
-                    <td>{{ingredient.liquor.brand}} - {{ingredient.quantity}} oz.</td>
-                {% endfor %}
-                <td><a href="/view_cocktail/{{cocktail.id}}">View </a>|<a href="/edit_cocktail/{{cocktail.id}}"> Edit </a>|<a href="/remove_cocktail/{{cocktail.id}}"> Remove</a></td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="margin_these">
+        <table class="table table-striped mx-auto" style="width: 1300px;">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Cocktail name</th>
+                    <!-- <th>desc</th> -->
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for cocktail in cocktails %}
+                <tr>
+                    <th scope="row">{{cocktail.name}}</th>
+                    <!-- {% for ingredient in cocktail.ingredients.all %}
+                        <td>{{ingredient.liquor.brand}} - {{ingredient.quantity}} oz.</td>
+                    {% endfor %} -->
+                    <td><a href="/view_cocktail/{{cocktail.id}}">View </a>|<a href="/edit_cocktail/{{cocktail.id}}"> Edit </a>|<a href="/remove_cocktail/{{cocktail.id}}"> Remove</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

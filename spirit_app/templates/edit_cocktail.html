@@ -7,12 +7,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/jquery.range.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
     <script src="{% static 'js/jquery.range.js' %}"></script>
     <title>Edit {{this_cocktail.name}}</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light" id="navigation">
+        <div id="navigation" class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="/home">HS here</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -38,7 +39,7 @@
             </div>
         </div>    
     </nav>
-        <div class="mx-auto" style="width: 450px;">
+        <div class="mx-auto pad_these" style="width: 450px;">
         <h2>Edit your Cocktail</h2>
         <form action="/cocktail_edit_confirm" method="POST">
             {% csrf_token %}
