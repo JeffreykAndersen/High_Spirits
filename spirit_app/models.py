@@ -56,18 +56,34 @@ class AlcoholManager(models.Manager):
     
     def add_alcohol(self, postData):
         the_cost = float(postData['cost'])
-        if postData['alcohol_type'] == "Fruit Juice" or "Simple Syrup":
-            pass
-        else: 
-            the_cost = round((the_cost * .205)+2.83+ the_cost, 2)
-        per_oz = (the_cost / 25.3605)
-        per_oz_round = round(per_oz, 2)
-        Alcohol.objects.create(
+        if postData['alcohol_type'] == "Fruit Juice":
+            per_oz = (the_cost / 25.3605)
+            per_oz_round = round(per_oz, 2)
+            Alcohol.objects.create(
             brand = postData['brand'],
             alcohol_type = postData['alcohol_type'],
             cost = the_cost,
             ppo = per_oz_round
         )
+        if postData['alcohol_type'] == "Simple Syrup":
+            per_oz = (the_cost / 25.3605)
+            per_oz_round = round(per_oz, 2)
+            Alcohol.objects.create(
+            brand = postData['brand'],
+            alcohol_type = postData['alcohol_type'],
+            cost = the_cost,
+            ppo = per_oz_round
+        )
+        else: 
+            the_cost = round((the_cost * .205)+2.83+ the_cost, 2)
+            per_oz = (the_cost / 25.3605)
+            per_oz_round = round(per_oz, 2)
+            Alcohol.objects.create(
+                brand = postData['brand'],
+                alcohol_type = postData['alcohol_type'],
+                cost = the_cost,
+                ppo = per_oz_round
+            )
 
 class CocktailManager(models.Manager):
     def validator(self,postData):
