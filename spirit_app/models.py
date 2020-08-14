@@ -118,6 +118,7 @@ class Alcohol(models.Model):
     cost = models.FloatField()
     ppo = models.FloatField()
     # photo = models.FileField(upload_to= "media", null=True, blank=True)
+    owned = models.ManyToManyField(Lead,related_name="bottles_owned")
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     objects = AlcoholManager()

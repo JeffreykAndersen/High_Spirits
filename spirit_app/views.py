@@ -50,7 +50,8 @@ def your_bar(request):
     if 'user' not in request.session:
         return redirect('/') 
     context ={
-        "bottles":Alcohol.objects.all()
+        "bottles":Alcohol.objects.all(),
+        "user" : Lead.objects.get(id= request.session['id'])
     } #THIS CONTEXT MAY CHANGE BASED ON HOW MANY BARS HAVE LOG INS 
     return render(request, 'your_bar.html', context)
 
@@ -63,7 +64,10 @@ def add_alcohol(request):
                 print (key, value)
             return redirect('/your_bar')
         else:
+            user = Lead.objects.get(id=request.session['id'])
             Alcohol.objects.add_alcohol(request.POST)
+            bottle = Alcohol.objects.last()
+            user.bottles_owned.add(bottle)
             return redirect('/your_bar')
 
 def edit_alcohol(request,id):

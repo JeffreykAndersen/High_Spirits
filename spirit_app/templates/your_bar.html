@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    {% load static%}
+    {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
     <title>Your Bar</title>
 </head>
@@ -37,6 +37,7 @@
         </div>    
     </nav>
     <div class="mx-auto pad_these" style="width: 450px;">
+    
         <h2>Add to your stock</h2>
         <form action="/add_alcohol" method="POST">
             {% csrf_token %}
@@ -75,6 +76,7 @@
         </div>
         {% endif %}
     </div>
+    <h3>Your Bottles:</h3>
     <table class="table table-striped mx-auto" style="width: 1300px;">
         <thead class="thead-dark">
             <tr>
@@ -86,7 +88,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for bottle in bottles %}
+        {% for bottle in user.bottles_owned.all %}
             <tr>
                 <th scope="row">{{bottle.brand}}</th>
                 <td>{{bottle.alcohol_type}}</td>
@@ -97,5 +99,29 @@
         {% endfor %}
         </tbody>
     </table>
+    <!-- this is code for all bottles in the DB
+    <h3>All Bottles:</h3>
+    <table class="table table-striped mx-auto" style="width: 1300px;">
+        <thead class="thead-dark">
+            <tr>
+                <th>Brand</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Cost per Oz.</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bottle in bottles%}
+            <tr>
+                <th scope="row">{{bottle.brand}}</th>
+                <td>{{bottle.alcohol_type}}</td>
+                <td>{{bottle.cost}}</td>
+                <td>{{bottle.ppo}}</td>
+                <td><a href="/remove_alcohol/{{bottle.id}}">Remove </a>|<a href="/edit_alcohol/{{bottle.id}}"> Edit</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table> -->
 </body>
 </html>
