@@ -133,6 +133,7 @@ class Alcohol(models.Model):
     alcohol_type = models.CharField(max_length=255)
     cost = models.FloatField()
     ppo = models.FloatField()
+    # size = models.CharField(max_length=255)
     # photo = models.FileField(upload_to= "media", null=True, blank=True)
     owned = models.ManyToManyField(Lead,related_name="bottles_owned")
     created_on = models.DateTimeField(auto_now_add=True)

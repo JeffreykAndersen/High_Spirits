@@ -94,7 +94,7 @@
                 <td>{{bottle.alcohol_type}}</td>
                 <td>{{bottle.cost}}</td>
                 <td>{{bottle.ppo}}</td>
-                <td><a href="/remove_alcohol/{{bottle.id}}">Remove </a>|<a href="/edit_alcohol/{{bottle.id}}"> Edit</a></td>
+                <td><a href="/remove_from_bar/{{bottle.id}}">Remove from bar</a></td>
             </tr>
         {% endfor %}
         </tbody>
@@ -118,7 +118,7 @@
                 <td>{{bottle.alcohol_type}}</td>
                 <td>{{bottle.cost}}</td>
                 <td>{{bottle.ppo}}</td>
-                <td><a href="/remove_alcohol/{{bottle.id}}">Remove </a>|<a href="/edit_alcohol/{{bottle.id}}"> Edit</a></td>
+                <td><a href="/remove_alcohol/{{bottle.id}}">Remove </a>|<a href="/edit_alcohol/{{bottle.id}}"> Edit</a> | <a href="/adding_to_bar/{{bottle.id}}">Add to Bar</a></td>
             </tr>
         {% endfor %}
         </tbody>

@@ -13,6 +13,8 @@ urlpatterns = [
     path('edit_alcohol/<int:id>', views.edit_alcohol),
     path('alcohol_edit_confirm/<int:id>', views.alcohol_edit_confirm),
     path('your_bar', views.your_bar),
+    path('adding_to_bar/<int:id>', views.adding_to_bar),
+    path('remove_from_bar/<int:id>', views.remove_from_bar),
     # COCKTAIL CREATION MANAGMENT
     path('codex', views.codex),
     path('create_cocktail', views.create_cocktail),

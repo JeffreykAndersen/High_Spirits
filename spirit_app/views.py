@@ -69,6 +69,17 @@ def add_alcohol(request):
             bottle = Alcohol.objects.last()
             user.bottles_owned.add(bottle)
             return redirect('/your_bar')
+def adding_to_bar(request, id):
+    user_adding = Lead.objects.get(id=request.session['id'])
+    bottle_added = Alcohol.objects.get(id=id)
+    user_adding.bottles_owned.add(bottle_added)
+    return redirect('/your_bar')
+
+def remove_from_bar (request, id):
+    user_removing = Lead.objects.get(id=request.session['id'])
+    bottle_removed = Alcohol.objects.get(id=id)
+    user_removing.bottles_owned.remove(bottle_removed)
+    return redirect('/your_bar')
 
 def edit_alcohol(request,id):
     if 'user' not in request.session:
